@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 """New engine DBStorage"""
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.ext.declarative import declarative_base
 import os
 from models.base_model import BaseModel, Base
 from models.city import City
 from models.state import State
-from models.user import User
-from models.place import Place
-from models.amenity import Amenity
-from models.review import Review
+# from models.user import User
+# from models.place import Place
+# from models.amenity import Amenity
+# from models.review import Review
 
 
 class DBStorage:
@@ -34,15 +35,17 @@ class DBStorage:
         """returns a dictionary"""
         dct = {}
         if cls:
-            objects = self.__session.query(cls).all()
+            objects = self.__session.query(cls)
+            for obj in objects:
+                key = "{}.{}".format(type(obj).__name__, obj.id)
+                dct[key] = obj
         else:
-            c_list = [User, State, City, Amenity, Place, Review]
-            objects = [obj for cl in c_list for obj in self.__session.query(
-                cl).all()]
-
-        for obj in objects:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            dct[key] = obj
+            c_list = [State, City] # Amenity, Place, Review, User]
+            for cl in c_list:
+                objects = self.__session.query(cl)
+                for obj in objects:
+                    key = "{}.{}".format(type(obj).__name__, obj.id)
+                    dct[key] = obj
 
         return dct
 
