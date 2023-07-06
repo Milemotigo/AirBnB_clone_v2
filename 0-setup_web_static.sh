@@ -6,7 +6,7 @@ sudo apt -y update
 sudo apt install -y nginx
 sudo mkdir -p /data/web_static/shared/
 sudo mkdir -p /data/web_static/releases/test/
-echo "<h1> Static web page test</h1>" | sudo tee /data/web_static/releases/test/index.html
+echo "<h1> webpage test</h1>" | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu:ubuntu /data/
