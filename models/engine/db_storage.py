@@ -9,8 +9,8 @@ from models.city import City
 from models.state import State
 from models.user import User
 from models.place import Place
+from models.review import Review
 # from models.amenity import Amenity
-# from models.review import Review
 
 
 class DBStorage:
@@ -40,7 +40,7 @@ class DBStorage:
                 key = "{}.{}".format(type(obj).__name__, obj.id)
                 dct[key] = obj
         else:
-            c_list = [State, City, User, Place]
+            c_list = [State, City, User, Place, Review]
             for cl in c_list:
                 objects = self.__session.query(cl)
                 for obj in objects:
