@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Table
+from sqlalchemy import Column, Table, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from models.review import Review
-from models.amenity import Amenity
 import models
 
 place_amenity = Table("place_amenity", Base.metadata,
@@ -31,7 +30,7 @@ class Place(BaseModel, Base):
     amenity_ids = []
     reviews = relationship("Review", cascade='all, delete', backref='place')
     amenities = relationship("Amenity", secondary=place_amenity,
-                             viewonly=False)
+                             viewonly=False, back_populates="place_amenities")
 
     @property
     def reviews(self):
@@ -48,7 +47,7 @@ class Place(BaseModel, Base):
         return self.amenity_ids
 
     @amenities.setter
-    def amenities(self, amenity):
+    def amenities(self, a_obj=None):
         """handles append method"""
-        if type(amenity) is Amenity and amenity.id not in self.amenity_ids:
-            self.amenity_ids.append(amenity.id)
+        if isinstance(a_obj, Amenity):
+            self.amenity_ids.append(a_obj.id)
