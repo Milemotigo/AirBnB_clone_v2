@@ -13,7 +13,7 @@ def do_pack():
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
-    tar_path = local('tar -c -z -v -f versions/web_static_{}.tgz web_static'
+    tar_path = local('tar -czvf versions/web_static_{}.tgz web_static'
                      .format(timestamp))
     if tar_path.success:
         return tar_path
