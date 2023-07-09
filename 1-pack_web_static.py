@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#a script to pack static content into a tarball fro m web_static folder
+# a script to pack static content into a tarball
 
 from fabric.api import local
 from datetime import datetime.now()
