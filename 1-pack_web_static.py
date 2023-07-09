@@ -13,8 +13,8 @@ def do_pack():
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
-    archive_path = local('tar -c -z -v -f versions/web_static_{}.tgz web_static'
-                     .format(timestamp))
+    archive_path = local('tar -c -z -v -f versions/web_static_{}.tgz\
+            web_static'.format(timestamp))
     if archive_path.success:
         return archive_path
     else:
