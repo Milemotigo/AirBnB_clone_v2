@@ -13,9 +13,9 @@ def do_pack():
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
-    Obj_tar = local('tar -c -z -v -f versions/web_static_{}.tgz web_static'
+    tar_path = local('tar -c -z -v -f versions/web_static_{}.tgz web_static'
                     .format(timestamp))
-    if Obj_tar.failed:
-        return None
+    if tar_path.success:
+        return tar_path
     else:
-        return Obj_tar
+        return None
