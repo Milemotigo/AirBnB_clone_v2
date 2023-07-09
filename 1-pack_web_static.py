@@ -9,7 +9,7 @@ from datetime import datetime
 def do_pack():
     """
     Returns the archive path if archive has been
-    correctly gernerated else return None
+    correctly gernerated else return nothimg
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
