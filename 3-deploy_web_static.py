@@ -13,7 +13,7 @@ env.hosts = ['3.83.18.183', '54.157.147.102']
 def do_pack():
     """
     Returns the archive path if archive has been
-    correctly gernerated else return None
+    correctly generated else return None
     """
 
     local("mkdir -p versions")
@@ -22,7 +22,7 @@ def do_pack():
     tgz_archive = local("tar -cvzf {} web_static".format(archive_pathh))
 
     if tgz_archive.succeeded:
-        return archive_path
+        return archive_pathh
     else:
         return None
 
@@ -42,8 +42,7 @@ def do_deploy(archive_path):
 
         run("sudo tar -xzvf {} -C {}/".format(archive, newFile))
         run("sudo rm -rf {}".format(archive))
-        run("sudo mv {}/web_static/* {}".format(newFile,
-                                                newFile))
+        run("sudo mv {}/web_static/* {}".format(newFile, newFile))
 
         run("sudo rm -rf {}/web_static".format(newFile))
         run("sudo rm -rf /data/web_static/current")
@@ -53,12 +52,13 @@ def do_deploy(archive_path):
     else:
         return False
 
+
 def deploy():
     """
     creates and distributes an archive to your web servers
     """
     archive_path = do_pack()
-    if not path:
+    if not archive_path:
         return False
     else:
-        do_deploy(archive_pathh)
+        do_deploy(archive_path)
