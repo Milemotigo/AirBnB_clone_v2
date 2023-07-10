@@ -47,7 +47,7 @@ def do_deploy(archive_path):
 
         run("sudo rm -rf {}/web_static".format(newFile))
         run("sudo rm -rf /data/web_static/current")
-        run("sudo ln -s {} /data/web_static/current".format(newfileversion))
+        run("sudo ln -s {} /data/web_static/current".format(newFile))
         print("Success")
         return True
     else:
@@ -57,8 +57,8 @@ def deploy():
     """
     creates and distributes an archive to your web servers
     """
-    archive_path = do_pack
+    archive_path = do_pack()
     if not path:
         return False
     else:
-        do_deploy(archive_path)
+        do_deploy(archive_pathh)
