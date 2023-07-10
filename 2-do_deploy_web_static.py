@@ -17,7 +17,7 @@ def do_deploy(archive_path):
         return False
     try:
         file = archive_path.split("/")[-1]
-        rm_ext = filename.split(".")[0]
+        rm_ext = file.split(".")[0]
         path_rm_ext = "/data/web_static/releases/{}/".format(rm_ext)
         symlink = "/data/web_static/current"
         put(archive_path, "/tmp/")
