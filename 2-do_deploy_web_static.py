@@ -1,8 +1,25 @@
 #!/usr/bin/env python3
-"""
-A Python script that distributes an archive to your web servers.
-"""
-from fabric.api import env, put, run
+'''a script to pack static content into a tarball
+'''
+
+from fabric.api import *
+from datetime import datetime
+
+
+def do_pack():
+    """
+    returns the archive path if archive has been
+    correctly gernerated else return nothimg
+    """
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    local('mkdir -p versions')
+    archive_path = local('tar -c -z -v -f versions/web_static_{}.tgz\
+            web_static'.format(timestamp))
+    if archive_path.success:
+        return archive_path
+    else:
+        return None
+
 
 env.hosts = ['3.83.18.183', '54.157.147.102']
 
