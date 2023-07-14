@@ -9,14 +9,13 @@ from datetime import datetime
 def do_pack():
     """
     returns the archive path if archive has been
-    correctly generated else return nothing
+    correctly gernerated else return nothimg
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
-    archive_path = "versions/web_static_{}.tgz".format(timestamp)
-    command = "tar -czvf {} web_static".format(archive_path)
-    result = local(command)
-    if result.failed:
+    archive_path = local('tar -c -z -v -f versions/web_static_{}.tgz\
+            web_static'.format(timestamp))
+    if archive_path.success:
+        return archive_path
+    else:
         return None
-    return archive_path
-
