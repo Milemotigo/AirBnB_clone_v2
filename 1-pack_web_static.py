@@ -15,7 +15,7 @@ def do_pack():
     local('mkdir -p versions')
     archive_filename = 'web_static_{}.tgz'.format(timestamp)
     archive_path = 'versions/{}'.format(archive_filename)
-    command = 'tar -czvf {} web_static'.format(archive_path)
+    command = 'tar -czvf {} -C web_static .'.format(archive_path)
     result = local(command)
     if result.succeeded:
         return archive_path
