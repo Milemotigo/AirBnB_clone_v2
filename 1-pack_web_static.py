@@ -17,7 +17,7 @@ def do_pack():
     archive_path = 'versions/{}'.format(archive_filename)
     command = 'tar -czvf {} web_static'.format(archive_path)
     result = local(command)
-    if result.return_code == 0:
+    if result.succeeded:
         return archive_path
     else:
         return None
