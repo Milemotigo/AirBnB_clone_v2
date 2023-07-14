@@ -2,7 +2,7 @@
 '''a script to pack static content into a tarball
 '''
 
-from fabric.api import local
+from fabric.api import *
 from datetime import datetime
 
 
@@ -13,10 +13,10 @@ def do_pack():
     """
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local('mkdir -p versions')
-    archive_path = "versions/web_static_{}.tgz".format(timestamp)
-    command = "tar -czvf {} web_static".format(archive_path)
-    result = local(command)
+    archive_path = 'versions/web_static_{}.tgz web_static'.format(timestamp)
+    command = "tar -czvf {} web_static".format(timestamp)
+    put = local(command)
     if result.failed:
         return None
-    return archive_path
-
+    else:
+        return put
