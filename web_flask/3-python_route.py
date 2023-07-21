@@ -23,7 +23,7 @@ def with_text(text):
     return f'C {text}'
 
 
-@app.route("/python/", defaults={"text": "is cool", strict_slashes=False)
+@app.route("/python/", defaults={"text": "is cool"}, strict_slashes=False)
 def dis_python(text):
     '''display python with value of text'''
     text = text.replace('_', ' ')
