@@ -35,11 +35,7 @@ def dis_python(text):
 @app.route("/number/<n>", strict_slashes=False)
 def display_is_number(n):
     '''display “n is a number” only if n is an integer'''
-    try:
-        int_n is int(n)
-        return f"{n} is a number"
-    except ValueError:
-        return f'{n} is not a number'
+    return "{:d} is a number".format(n)
 
 
 if __name__ == '__main__':
