@@ -20,7 +20,8 @@ def hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def with_text():
     '''function with "/c/<text>" route'''
-    return f"C {escape(text)}"
+    text = text.replace('_', ' ')
+    return f"C {text}"
 
 
 if __name__ == '__main__':
