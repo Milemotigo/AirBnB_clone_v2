@@ -32,6 +32,15 @@ def dis_python(text):
     return f'Python {text}'
 
 
+@app.route("/number/<n>", strict_slashes=False)
+def display_is_number(n):
+    '''display “n is a number” only if n is an integer'''
+    if isinstance(n, int):
+        return "n is a number"
+    else:
+        return False
+
+
 if __name__ == '__main__':
     '''main function '''
     app.run(host='0.0.0.0', port=5000)
