@@ -36,7 +36,7 @@ def dis_python(text):
 def display_is_number(n):
     '''display “n is a number” only if n is an integer'''
     if isinstance(n, int):
-        return "n is a number"
+        return f"{n} is a number"
     else:
         return False
 
