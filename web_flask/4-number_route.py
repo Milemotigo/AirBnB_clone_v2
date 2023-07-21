@@ -32,9 +32,16 @@ def dis_python(text):
     return f'Python {text}'
 
 
-@app.route("/number/<n>", strict_slashes=False)
-def display_is_number(n):
-    '''display “n is a number” only if n is an integer'''
+'''@app.route("/number/<n>", strict_slashes=False)
+def display_is_number(n):'
+    return "{:d} is a number".format(n)'''
+
+
+app.route('/number/<int:n>', strict_slashes=False)
+
+
+def n_is_number(n):
+    """ Prints a Message when /number is called only if n is an integer"""
     return "{:d} is a number".format(n)
 
 
