@@ -22,7 +22,7 @@ def hbnb():
 def with_text(text):
     '''route c to text and replace _ with space '''
     text = text.replace('_', ' ')
-    return 'C f{text}'
+    return f'C {text}'
 
 
 @app.route("/python/", defaults={'text': 'is cool'}, strict_slashes=False)
@@ -30,7 +30,7 @@ def with_text(text):
 def dis_python(text):
     '''display python with value of text'''
     text = text.replace('_', ' ')
-    return 'Python f{text}'
+    return f'Python {text}'
 
 
 if __name__ == '__main__':
