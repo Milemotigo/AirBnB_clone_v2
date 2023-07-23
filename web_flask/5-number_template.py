@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ''' a script that starts a Flask web application '''
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
@@ -35,6 +35,11 @@ def python_is_cool(text='is_cool'):
 def number(n):
     """prints n is a number if it is an integer"""
     return f"{n} is a number"
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_templ(n):
+    ''' return a number template'''
+    return(render_template("5-number.html", n=n))
 
 
 if __name__ == '__main__':
