@@ -1,41 +1,46 @@
-#!/usr/bin/python3
-''' a script that starts a Flask web application '''
-from flask import Flask, render_template
-
+#!/usr/bin/python3i
+"""
+A script that starts a flask web application
+"""
+from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
+"""Return to display "Hello HBNB!"""
 
-@app.route("/", strict_slashes=False)
-def hello_hbnb():
-    ''' route / to hbnb '''
+
+@app.route('/', strict_slashes=False)
+def hello():
+    """funtion that returns Hello HBNB!"""
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
-def hbnb():
-    '''route hbnb to HBNB '''
-    return 'HBNB'
+@app.route('/hbnb', strict_slashes=False)
+def HBNB():
+    """funtion that returns HBNB"""
+    return "HBNB"
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def c_is_fun(text):
-    """ Prints a Message when /c is called """
-    return "C " + text.replace('_', ' ')
+def hello(text):
+    """funtion that returns "C <text(i.e a variable)>" """
+    text = text.replace('_', ' ')
+    return f"C {text}"
 
 
-@app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_is_cool(text='is_cool'):
-    """ Prints a Message when /python is called """
-    return "Python " + text.replace('_', ' ')
+@app.route('/python/', strict_slashes=False)
+def helloPython(text="is_cool"):
+    """funtion that returns "Python <text(i.e a variable)>" """
+    text = text.replace('_', ' ')
+    return f"Python {text}"
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number(n):
-    """prints n is a number if it is an integer"""
+def helloNumber(n):
+    """funtion that returns "n" is a number if int else an error"""
     return f"{n} is a number"
-
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
@@ -45,5 +50,5 @@ def number_template(n):
 
 
 if __name__ == '__main__':
-    '''main function '''
+    """ Main Function """
     app.run(host='0.0.0.0', port=5000)
