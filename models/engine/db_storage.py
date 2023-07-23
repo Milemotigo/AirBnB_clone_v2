@@ -45,7 +45,7 @@ class DBStorage:
 
             if cls.__name__ in DBStorage.classes:
                 query = self.__session.query(cls).all()
-                
+
                 for obj in query:
                     key = f"{type(obj).__name__}.{obj.id}"
                     obj_dict.update({key: obj})
@@ -79,4 +79,4 @@ class DBStorage:
     def close(self):
         """ calls close()
         """
-        self.__session.close()
+        self.__session.remove()
