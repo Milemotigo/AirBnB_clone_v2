@@ -18,18 +18,17 @@ def hbnb():
     return 'HBNB'
 
 
-@app.route("/c/<text>", strict_slashes=False)
-def with_text(text):
-    '''route c to text and replace _ with space '''
-    text = text.replace('_', ' ')
-    return f'C {text}'
+@app.route('/c/<text>', strict_slashes=False)
+def c_is_fun(text):
+    """ Prints a Message when /c is called """
+    return "C " + text.replace('_', ' ')
 
 
-@app.route("/python/", defaults={"text": "is cool"}, strict_slashes=False)
-def dis_python(text):
-    '''display python with value of text'''
-    text = text.replace('_', ' ')
-    return f'Python {text}'
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python_is_cool(text='is_cool'):
+    """ Prints a Message when /python is called """
+    return "Python " + text.replace('_', ' ')
 
 
 if __name__ == '__main__':
