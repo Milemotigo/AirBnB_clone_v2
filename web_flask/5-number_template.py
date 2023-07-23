@@ -1,47 +1,42 @@
 #!/usr/bin/python3
-""" A script that starts a flask web application """
+''' a script that starts a Flask web application '''
 from flask import Flask
-from flask import render_template
+
+
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def hello_hbnb():
-    """ return to the root """
-    return 'Hello HBNB!'
+    ''' route / to hbnb '''
+    return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """ returns a  /hbnb is called """
+    '''route hbnb to HBNB '''
     return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
-    """ returns a Message when /c is called """
+    """ Prints a Message when /c is called """
     return "C " + text.replace('_', ' ')
 
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_is_cool(text='is_cool'):
-    """ returns a Message when /python is called """
+    """ Prints a Message when /python is called """
     return "Python " + text.replace('_', ' ')
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def n_is_number(n):
-    """ returns a Message when /number is called only if n is an int"""
-    return "{n} is a number"
+def number(n):
+    """prints n is a number if it is an integer"""
+    return f"{n} is a number"
 
 
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """ display a HTML page only if n is an integer """
-    return render_template('5-number.html', n=n)
-
-
-if __name__ == "__main__":
-    """ Main Function """
+if __name__ == '__main__':
+    '''main function '''
     app.run(host='0.0.0.0', port=5000)
