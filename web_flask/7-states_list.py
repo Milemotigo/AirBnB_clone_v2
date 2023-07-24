@@ -22,7 +22,7 @@ def stateList():
     """list all state object (sorted)"""
     states = storage.all(State).values()
     stateSorted = sorted(states, key=lambda state: state.name)
-    return render_template('7-states_list.html', states=stateSorted)
+    return render_template('states_list.html', states=stateSorted)
 
 
 if __name__ == '__main__':
